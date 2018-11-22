@@ -11,19 +11,19 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "DenStream"))
 
 import copy
 
-### MATH, TIME, JSON
+# MATH, TIME, JSON
 import json
 import time
 import numpy as np
 import pandas as pd
 
-### Anomaly DenStream Algorithm library
+# Anomaly DenStream Algorithm library
 from sample import Sample
 from DenStream import DenStream
 from statistics import Statistics
 from readGroundTruth import groundTruth
 
-### Visualization library
+# Visualization library
 from visualization import Visualization
 from multiprocessing import Process
 
@@ -68,10 +68,10 @@ def main(configuration):
 			else:
 				sys.exit('Something wrong in configuration feature model')
 
-			"""Dataset normalization"""	
+			"""Dataset normalization"""
 			df = df.loc[:,df.std()!=0]
 			dfNormalized = normalize_matrix(df).dropna(axis=1)
-           
+
 			bufferDF = dfNormalized[0:configuration['sampleSkip']]
 			testDF = dfNormalized[configuration['sampleSkip']:]
 
@@ -87,7 +87,7 @@ def main(configuration):
 			"""Iterate on all the rows in the dataset and run .runOnNewSample() method of the algorithm"""
 			"""The algorithm tries to merge the new sample to the existing clusters"""
 			"""If the algorithm merges the sample to a core-mmc: the sample is considered Normal and returns False"""
-			"""If the algorithm merges the sample to a outlier-mc or generates a new outlier-mc: the sample is considered Anomalous and returns True""" 
+			"""If the algorithm merges the sample to a outlier-mc or generates a new outlier-mc: the sample is considered Anomalous and returns True"""
 			print 'Running algorithm ...',
 			startingSimulation = time.time()
 			outputCurrentNode = []
@@ -115,7 +115,7 @@ def main(configuration):
 			else:
 				sys.exit('Error detectionCriterion')
 
-	"""	Print result on file if multicoreAnalysis ON. Used only for grid optimization. Very long task""" 
+	"""	Print result on file if multicoreAnalysis ON. Used only for grid optimization. Very long task"""
 	if configuration['multicoreAnalysis']['ON'] == 'YES':
 		path = "DataPlane/"
 		with open("Results/"+path+str(configuration["algorithmParameters"]["lambda"])+"_"+str(configuration["algorithmParameters"]["beta"])+"_PRF.json", "w") as outputfile:
@@ -140,7 +140,7 @@ def main(configuration):
 	else:
 		"""Compute statistics if time detection chosen"""
 		"""The script compares the results with the ground truth and computes precision/recall"""
-		"""In the end, writes the results on "resultsKT.json" file, in the "Visualiation" folder""" 
+		"""In the end, writes the results on "resultsKT.json" file, in the "Visualiation" folder"""
 		if configuration['detectionCriterion'] == 'timeDetection':
 			resStatistics =  statistics.getPrecisionRecallFalseRate(resultByNode, kMAX=5, plot=True)
 			resDelay =  statistics.getDelay(resultByNode, kMAX=5, plot=True)
@@ -177,7 +177,7 @@ if __name__ == "__main__":
 		workersList = []
 		for lamb in lambdas:
 			for beta in betas:
-					
+
 					algorithmParameters = {
 						"sampleSkip": 39,
 						"lambda": lamb,

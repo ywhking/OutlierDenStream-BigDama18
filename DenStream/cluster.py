@@ -6,7 +6,8 @@ Created on Thu Jun 29 17:48:58 2017
 @author: anr.putina
 """
 
-class Cluster():
+
+class Cluster:
     def __init__(self):
         self.clusters = []
         self.N = 0
@@ -25,4 +26,3 @@ class Cluster():
             print 'Weight: '+str(cluster.weight)
             print 'Creation Time: '+str(cluster.creationTimeStamp)
             print 'LastEdit Time: '+str(cluster.lastEditTimeStamp)
-

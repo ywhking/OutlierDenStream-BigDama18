@@ -6,21 +6,23 @@ Created on Thu Jun 29 17:48:21 2017
 @author: anr.putina
 """
 
-class Sample():
+
+class Sample:
     
     def __init__(self, value, timestamp):
         self.value = value
         self.timestamp = 0
-        self.realTimestamp = timestamp
+        self.real_timestamp = timestamp
+        self.micro_cluster_number = 0
         
-    def getValue(self):
+    def get_value(self):
         return self.value
     
-    def setTimestamp(self, timestamp):
+    def set_timestamp(self, timestamp):
         self.timestamp = timestamp
         
-    def setRealTimestamp(self, timestamp):
-        self.realTimestamp = timestamp
+    def set_real_timestamp(self, timestamp):
+        self.real_timestamp = timestamp
 
-    def setMicroClusterNumber(self, microClusterNumber):
-        self.microClusterNumber = microClusterNumber
+    def set_micro_cluster_number(self, micro_cluster_number):
+        self.micro_cluster_number = micro_cluster_number
